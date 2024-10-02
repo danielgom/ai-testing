@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: aipj
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ai_tracker
+    username: ${POSTGRESQL_USERNAME}
+    password: ${POSTGRESQL_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+langchain4j:
+  open-ai:
+    chat-model:
+      api-key: ${OPENAI_API_KEY}
+      model-name: gpt-4o-2024-08-06
+      log-requests: true
+      log-responses: true
+      response-format: json_schema
+
+brandwatch:
+  host: ${BRANDWATCH_API_HOST}
+  username: ${BRANDWATCH_API_USERNAME}
+  password: ${BRANDWATCH_API_PASSWORD}
+  projectID: ${BRANDWATCH_API_PROJECT_ID}
