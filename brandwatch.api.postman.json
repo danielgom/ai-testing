@@ -1,0 +1,162 @@
+{
+    "info": {
+        "_postman_id": "53b24ba4-0df8-49b1-a01e-c7f59bd525d0",
+        "name": "BrandWatch",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "25834865"
+    },
+    "item": [
+        {
+            "name": "Queries",
+            "item": [
+                {
+                    "name": "Get Queries",
+                    "request": {
+                        "method": "GET",
+                        "header": []
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Mentions",
+                    "request": {
+                        "method": "GET",
+                        "header": []
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "AIAPI",
+            "item": [
+                {
+                    "name": "New Request",
+                    "request": {
+                        "method": "GET",
+                        "header": []
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "1. Login",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "urlencoded",
+                    "urlencoded": [
+                        {
+                            "key": "password",
+                            "value": "Alvarezgomez123409@",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "https://api.brandwatch.com/oauth/token?username=A01794498@tec.mx&grant_type=api-password&client_id=brandwatch-api-client",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "brandwatch",
+                        "com"
+                    ],
+                    "path": [
+                        "oauth",
+                        "token"
+                    ],
+                    "query": [
+                        {
+                            "key": "username",
+                            "value": "A01794498@tec.mx"
+                        },
+                        {
+                            "key": "grant_type",
+                            "value": "api-password"
+                        },
+                        {
+                            "key": "client_id",
+                            "value": "brandwatch-api-client"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "GET User Information",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": [
+                        {
+                            "key": "token",
+                            "value": "06feef36-613b-4456-98c5-c725244e173a",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                    "mode": "urlencoded",
+                    "urlencoded": [
+                        {
+                            "key": "password",
+                            "value": "[yourpassword]",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "https://api.brandwatch.com/user",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "brandwatch",
+                        "com"
+                    ],
+                    "path": [
+                        "user"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Client Information",
+            "request": {
+                "method": "GET",
+                "header": []
+            },
+            "response": []
+        },
+        {
+            "name": "Get Full Information user+client",
+            "request": {
+                "method": "GET",
+                "header": []
+            },
+            "response": []
+        },
+        {
+            "name": "Get Projects",
+            "request": {
+                "method": "GET",
+                "header": []
+            },
+            "response": []
+        }
+    ],
+    "variable": [
+        {
+            "key": "access_token",
+            "value": ""
+        }
+    ]
+}
