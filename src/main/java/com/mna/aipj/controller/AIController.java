@@ -14,16 +14,8 @@ public class AIController {
 
     private final AIService aiService;
 
-    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TriggerUpdateResponse> getExpResponse() {
-        aiService.readExcel();
-        return ResponseEntity.ok(TriggerUpdateResponse.builder()
-                .message("Hello World")
-                .build());
-    }
-
-    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TriggerUpdateResponse> triggerExp(@RequestParam("queryId") String queryID) {
+    @PostMapping(value = "query:update", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TriggerUpdateResponse> triggerExp(@RequestParam("query_id") String queryID) {
         return ResponseEntity.ok(aiService.triggerUpdate(queryID));
     }
 }

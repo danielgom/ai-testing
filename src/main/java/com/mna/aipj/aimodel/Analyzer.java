@@ -8,7 +8,4 @@ public interface Analyzer {
 
     @SystemMessage(fromResource = "AnalyzerSystemPrompt.txt")
     AnalyzerResponse analyzeMentions(@UserMessage String userMessage);
-
-    @SystemMessage(fromResource = "ClassifierSystemPrompt.txt")
-    boolean classifyMentions(@UserMessage String userMessage);
 }

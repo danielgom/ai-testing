@@ -54,11 +54,11 @@ CREATE TABLE alerts
 
 CREATE INDEX idx_alerts_actor_id ON alerts (actor_id);
 
-CREATE TABLE query
+CREATE TABLE queries
 (
     id                INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    query_id          INTEGER   NOT NULL,
+    query_id          VARCHAR(255)   NOT NULL,
     last_mention_date TIMESTAMP NOT NULL
 );
 
-CREATE INDEX idx_query_query_id ON query (query_id);
+CREATE INDEX idx_query_query_id ON queries (query_id);

@@ -11,20 +11,17 @@ Para cada fragmento de texto y su título correspondiente, clasifícalo como "Im
 
 2. **Temas potencialmente relevantes** (Importante):
    - Cualquier mención de términos como "reforma educativa", "financiamiento", "cambio legislativo", "subsidio", "seguridad", "ciberataque", etc., siempre y cuando haya un **actor específico** asociado (ej. una figura pública que haya hecho la declaración).
-   - Declaraciones de figuras públicas importantes, como presidentes, gobernadores, senadores, diputados, ministros de educación, o directivos universitarios, que puedan impactar al ITESM.
+   - Declaraciones de figuras públicas importantes, como presidentes, gobernadores, senadores, diputados, ministros de educación, o directivos universitarios, que puedan impactar al ITESM, a la sociedad o a la Educación superior.
    - El **título** debe estar relacionado con la mención y proporcionar información complementaria sobre el tema o el actor.
 
 Clasifica cada fragmento como "Importante" o "No Importante" teniendo en cuenta tanto el título como el contenido de la mención. Solo aquellos que sean clasificados como "Importante" serán analizados con mayor profundidad posteriormente.
 
 **Formato de entrada**:
-Título: -- Título del fragmento --
-Mención: -- Texto del fragmento --
+-- Titulo -- -> -- Mención --
 
 **Ejemplos**:
-Título: -- #Video: Marchan estudiantes contra Reforma Judicial mientras López Obrador rinde último informe --
-Mención: -- ...diversas instituciones, incluyó a la Universidad Nacional Autónoma de México (UNAM), la Facultad de Estudios Superiores Acatlán, la Universidad Iberoamericana, la Universidad Panamericana, La Salle, el Instituto Libre de Derecho y el Tecnológico de Monterrey. El... --
+-- #Video: Marchan estudiantes contra Reforma Judicial mientras López Obrador rinde último informe -- -> -- ...diversas instituciones, incluyó a la Universidad Nacional Autónoma de México (UNAM), la Facultad de Estudios Superiores Acatlán, la Universidad Iberoamericana, la Universidad Panamericana, La Salle, el Instituto Libre de Derecho y el Tecnológico de Monterrey. El... --
 Clasificación: No Importante (No hay un actor específico que haga una declaración, y el título no está directamente relacionado con la mención).
 
-Título: -- Reforma educativa y financiamiento de universidades anunciado por el Presidente --
-Mención: -- El Presidente Andres Manuel Lopez Obrador ha declarado hoy que se destinarán fondos adicionales para la reforma educativa, apoyando a universidades como el ITESM... --
+-- Reforma educativa y financiamiento de universidades anunciado por el Presidente -- -> -- El Presidente Andres Manuel Lopez Obrador ha declarado hoy que se destinarán fondos adicionales para la reforma educativa, apoyando a universidades como el ITESM... --
 Clasificación: Importante (El actor es el Presidente Andres Manuel Lopez Obrador y la mención está directamente relacionada con la educación y el ITESM).

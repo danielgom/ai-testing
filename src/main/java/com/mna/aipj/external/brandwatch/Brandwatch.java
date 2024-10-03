@@ -1,6 +1,7 @@
 package com.mna.aipj.external.brandwatch;
 
 import com.mna.aipj.dto.exception.UserException;
+import jdk.swing.interop.SwingInterOpUtils;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.util.UriBuilder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -41,26 +43,42 @@ public class Brandwatch {
 
     private static final Logger logger = LoggerFactory.getLogger(Brandwatch.class);
 
-    public BrandwatchMentionResponse getQueryMentions(String queryID) {
+    public BrandwatchMentionResponse getInitialQueryMentions(String queryID) {
+        return getMentions(queryID, null);
+    }
+
+    public BrandwatchMentionResponse getQueryMentionsAddedSince(String queryID, LocalDateTime addedSince) {
+        return getMentions(queryID, addedSince);
+    }
+
+    private BrandwatchMentionResponse getMentions(String queryID, LocalDateTime addedSince) {
         logger.info("getting projectID ({}) queryID({}) mentions...", this.projectID, queryID);
         this.login();
         String mentionsURL = String.format("/projects/%s/data/mentions",
                 this.projectID);
 
-        int pageSize = 1000; // retrieves last x amount of mentions
+        int pageSize = 5; // retrieves last x amount of mentions TODO: modify to 1000 once initial tests are completed
         LocalDate currentDate = LocalDate.now();
 
         try {
             BrandwatchMentionResponse mentions = this.getRestClient().get()
-                    .uri(uriBuilder -> uriBuilder.path(mentionsURL)
-                            .queryParam("queryId", queryID)
-                            .queryParam("startDate",  currentDate.minusDays(30))
-                            .queryParam("endDate", currentDate)
-                            .queryParam("pageSize", pageSize)
-                            .queryParam("page", 0)
-                            .queryParam("orderBy", "added")
-                            .queryParam("orderDirection", "asc")
-                            .build())
+                    .uri(uriBuilder -> {
+                        UriBuilder requestBuilder = uriBuilder.path(mentionsURL)
+                                .queryParam("queryId", queryID)
+                                .queryParam("startDate", currentDate.minusDays(30))
+                                .queryParam("endDate", currentDate)
+                                .queryParam("pageSize", pageSize)
+                                .queryParam("page", 0)
+                                .queryParam("orderBy", "added")
+                                .queryParam("orderDirection", "desc");
+
+                        if (addedSince != null) {
+                            logger.info("retrieving new mentions added since ({})...", addedSince);
+                            requestBuilder.queryParam("addedSince", addedSince);
+                        }
+
+                        return requestBuilder.build();
+                    })
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .header(HttpHeaders.AUTHORIZATION, "Bearer " + this.accessToken)
                     .retrieve()
