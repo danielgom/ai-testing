@@ -1,7 +1,6 @@
 package com.mna.aipj.external.brandwatch;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -19,7 +18,7 @@ public class BrandWatchMention {
     private String title;
 
     @JsonProperty("snippet")
-    private String Snippet;
+    private String snippet;
 
     @JsonProperty("domain")
     private String domain;
@@ -33,10 +32,4 @@ public class BrandWatchMention {
     @JsonProperty("date")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
     private LocalDateTime mentionDate;
-
-    @JsonIgnore
-    private boolean isClassified;
-
-    @JsonIgnore
-    private boolean isImportant;
 }

@@ -1,5 +1,6 @@
 package com.mna.aipj.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +14,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class TriggerUpdateResponse {
 
-    private String message;
+    @JsonProperty("got_from_api")
+    private int gotFromAPI;
+
+    @JsonProperty("total_classified")
+    private int totalClassified;
+
+    @JsonProperty("total_analysed")
+    private int totalAnalysed;
 
     private boolean completed;
 

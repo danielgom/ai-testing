@@ -2,6 +2,7 @@ package com.mna.aipj.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnTransformer;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -28,6 +29,7 @@ public class Alert {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "alert_level", nullable = false)
+    @ColumnTransformer(write = "?::alert_level_enum")
     private AlertLevel alertLevel;
 
     @Column(nullable = true)

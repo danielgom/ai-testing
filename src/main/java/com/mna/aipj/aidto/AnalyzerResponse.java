@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Description("Formato de respuesta del análisis de cada texto.")
+@Description("Formato de respuesta del análisis de cada mención.")
 public class AnalyzerResponse {
 
     List<AnalyzerResultResponse> responseList;

@@ -29,9 +29,8 @@ public class Actor {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-
     @OneToMany(mappedBy = "actor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Mention> mentions;
+    private List<ActorMention> mentions;
 
     @Override
     public boolean equals(Object o) {

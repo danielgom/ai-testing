@@ -15,5 +15,7 @@ import java.util.List;
 @Description("Formato de respuesta de la clasificación de cada mencion.")
 public class ClassifierResponse {
 
+    @Description("Lista que guarda la clasificación de las menciones." +
+            "El tamaño de la lista debe ser igual al número de menciones clasificadas.")
     List<ClassifierResultResponse> responseList;
 }

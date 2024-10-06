@@ -9,6 +9,7 @@ spring:
     hibernate:
       ddl-auto: validate
     show-sql: true
+    open-in-view: false
 langchain4j:
   open-ai:
     chat-model:

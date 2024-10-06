@@ -1,7 +1,6 @@
 package com.mna.aipj.external.brandwatch;
 
 import com.mna.aipj.dto.exception.UserException;
-import jdk.swing.interop.SwingInterOpUtils;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +15,11 @@ import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.util.UriBuilder;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Component
 @RequiredArgsConstructor
@@ -57,7 +59,7 @@ public class Brandwatch {
         String mentionsURL = String.format("/projects/%s/data/mentions",
                 this.projectID);
 
-        int pageSize = 5; // retrieves last x amount of mentions TODO: modify to 1000 once initial tests are completed
+        int pageSize = 300; // retrieves last x amount of mentions
         LocalDate currentDate = LocalDate.now();
 
         try {
@@ -74,7 +76,7 @@ public class Brandwatch {
 
                         if (addedSince != null) {
                             logger.info("retrieving new mentions added since ({})...", addedSince);
-                            requestBuilder.queryParam("addedSince", addedSince);
+                            requestBuilder.queryParam("sinceAdded", formatDateSince(addedSince));
                         }
 
                         return requestBuilder.build();
@@ -88,6 +90,9 @@ public class Brandwatch {
                 throw new UserException("brandwatch mention API call failed empty response",
                         HttpStatus.INTERNAL_SERVER_ERROR);
             }
+
+            logger.info("got ({}) mentions from query ({}) successfully",
+                    mentions.getResults().size(), queryID);
 
             return mentions;
 
@@ -139,5 +144,11 @@ public class Brandwatch {
             }
         }
         logger.info("logged in successfully or already logged in");
+    }
+
+    private String formatDateSince(LocalDateTime date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'+0000'");
+        String formattedDate = date.format(formatter);
+        return URLEncoder.encode(formattedDate, StandardCharsets.UTF_8);
     }
 }

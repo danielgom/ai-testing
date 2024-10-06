@@ -33,10 +33,14 @@ dependencies {
 	implementation("dev.langchain4j:langchain4j-spring-boot-starter:0.34.0")
 	implementation("dev.langchain4j:langchain4j-open-ai-spring-boot-starter:0.34.0")
 	implementation("org.postgresql:postgresql")
-	implementation("org.dhatim:fastexcel:0.18.4")
-	implementation("org.dhatim:fastexcel-reader:0.18.4")
+	implementation("org.mapstruct:mapstruct:1.6.0")
+
 	compileOnly("org.projectlombok:lombok")
+
 	annotationProcessor("org.projectlombok:lombok")
+	annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
+	annotationProcessor("org.mapstruct:mapstruct-processor:1.6.0")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
