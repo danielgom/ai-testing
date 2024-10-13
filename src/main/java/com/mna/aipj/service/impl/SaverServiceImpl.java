@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 
 @RequiredArgsConstructor
 @Service
@@ -31,10 +30,7 @@ public class SaverServiceImpl implements SaverService {
 
     @Override
     public void saveUpdateQuery(String queryID, LocalDateTime lastMentionDate) {
-        queryRepository.save(Query.builder()
-                .queryID(queryID)
-                .lastMentionDate(lastMentionDate)
-                .build());
+        queryRepository.updateLastMentionDate(queryID, lastMentionDate);
     }
 
     @Override
@@ -72,7 +68,7 @@ public class SaverServiceImpl implements SaverService {
                     .createdAt(currentTime)
                     .build()));
 
-            CompletableFuture<Void> saveMention = CompletableFuture.runAsync(() -> actorMentionRepository.save(ActorMention.builder()
+            ActorMention actorMention = actorMentionRepository.save(ActorMention.builder()
                     .actor(actor)
                     .platformSource(mentionInformation.getDomain())
                     .urlSource(mentionInformation.getUrl())
@@ -83,15 +79,13 @@ public class SaverServiceImpl implements SaverService {
                     .topic(mentionTopic)
                     .mentionDate(mentionInformation.getDate())
                     .createdAt(currentTime)
-                    .build()));
+                    .build());
 
-            CompletableFuture<Void> saveAlert = CompletableFuture.runAsync(() -> alertRepository.save(Alert.builder()
-                    .actor(actor)
+            alertRepository.save(Alert.builder()
+                    .actorMention(actorMention)
                     .topic(mentionInformation.getTopic())
                     .alertLevel(mentionInformation.getAlertLevel())
-                    .build()));
-
-            CompletableFuture.allOf(saveMention, saveAlert).join();
+                    .build());
         });
     }
 }

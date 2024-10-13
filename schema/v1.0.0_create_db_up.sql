@@ -14,10 +14,10 @@ CREATE TABLE actor_mentions
 (
     id              INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     actor_id        INT REFERENCES actors (id) ON DELETE CASCADE,
-    platform_source VARCHAR(255) NOT NULL,              -- Dominio
-    url_source      VARCHAR(255) NOT NULL,              -- URL de la mención
-    type            VARCHAR(255) NOT NULL,              -- Tipo (Online News, Facebook Public, X, etc...)
-    title           VARCHAR(255) NOT NULL,              -- Título de la mención
+    platform_source TEXT         NOT NULL,              -- Dominio
+    url_source      TEXT         NOT NULL,              -- URL de la mención
+    type            TEXT         NOT NULL,              -- Tipo (Online News, Facebook Public, X, etc...)
+    title           TEXT         NOT NULL,              -- Título de la mención
     sentiment       emotion_enum NOT NULL,              -- Sentimiento del actor en la mención (POSITIVE, NEGATIVE, NEUTRAL)
     content         TEXT         NOT NULL,              -- Lo que se menciono por el actor (Snippet)
     topic           VARCHAR(255) NOT NULL,              -- Tema principal de la mención (elección, title o LLM)
@@ -43,15 +43,15 @@ CREATE TABLE actor_mention_trends
 CREATE INDEX idx_mention_trends_actor_id ON actor_mention_trends (actor_id);
 CREATE INDEX idx_mention_trends_topic ON actor_mention_trends (topic);
 
-CREATE TABLE mentions -- Guardar menciones no relevantes pero Brandwatch provee
+CREATE TABLE mentions -- Guardar menciones no relevantes pero que Brandwatch provee
 (
     id              INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    platform_source VARCHAR(255) NOT NULL,              -- Dominio
-    url_source      VARCHAR(255) NOT NULL,              -- URL de la mención
-    type            VARCHAR(255) NOT NULL,              -- Tipo (Online News, Facebook Public, X, etc...)
-    title           VARCHAR(255) NOT NULL,              -- Título de la mención
-    content         TEXT         NOT NULL,              -- Lo que se menciono
-    mention_date    TIMESTAMP    NOT NULL,              -- Fecha y hora de la mención
+    platform_source TEXT      NOT NULL,                 -- Dominio
+    url_source      TEXT      NOT NULL,                 -- URL de la mención
+    type            TEXT      NOT NULL,                 -- Tipo (Online News, Facebook Public, X, etc...)
+    title           TEXT      NOT NULL,                 -- Título de la mención
+    content         TEXT      NOT NULL,                 -- Lo que se menciono
+    mention_date    TIMESTAMP NOT NULL,                 -- Fecha y hora de la mención
     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Fecha y hora de creación de la mención
 );
 
@@ -59,16 +59,16 @@ CREATE TYPE alert_level_enum AS ENUM ('HIGH', 'MEDIUM', 'LOW', 'NONE');
 
 CREATE TABLE alerts
 (
-    id             INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    actor_id       INT REFERENCES actors (id) ON DELETE CASCADE,
-    topic          VARCHAR(255)     NOT NULL,               -- Tema que generó la alerta
-    alert_level    alert_level_enum NOT NULL,               -- Nivel de criticidad (HIGH, MEDIUM, LOW)
-    active         BOOLEAN          NOT NULL DEFAULT FALSE, -- Indica si la alerta está activa o no
-    trigger_date   TIMESTAMP        NULL,                   -- Fecha y hora en que se disparó la alerta
-    deactivated_at TIMESTAMP                                -- Fecha y hora en que se desactivó la alerta
+    id               INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    actor_mention_id INT REFERENCES actor_mentions (id) ON DELETE CASCADE,
+    topic            VARCHAR(255)     NOT NULL,               -- Tema que generó la alerta
+    alert_level      alert_level_enum NOT NULL,               -- Nivel de criticidad (HIGH, MEDIUM, LOW)
+    active           BOOLEAN          NOT NULL DEFAULT FALSE, -- Indica si la alerta está activa o no
+    trigger_date     TIMESTAMP        NULL,                   -- Fecha y hora en que se disparó la alerta
+    deactivated_at   TIMESTAMP                                -- Fecha y hora en que se desactivó la alerta
 );
 
-CREATE INDEX idx_alerts_actor_id ON alerts (actor_id);
+CREATE INDEX idx_alerts_actor_mention_id ON alerts (actor_mention_id);
 CREATE INDEX idx_alerts_topic ON alerts (topic);
 
 CREATE TABLE queries

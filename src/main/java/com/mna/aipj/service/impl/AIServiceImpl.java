@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -44,6 +45,7 @@ public class AIServiceImpl implements AIService {
     private static final Logger logger = LoggerFactory.getLogger(AIServiceImpl.class);
 
     @Override
+    @Transactional
     public TriggerUpdateResponse triggerUpdate(String queryID) {
         List<BrandWatchMention> mentions;
 

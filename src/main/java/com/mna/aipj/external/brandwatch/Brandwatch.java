@@ -15,10 +15,10 @@ import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.util.UriBuilder;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 @Component
@@ -145,10 +145,9 @@ public class Brandwatch {
         }
         logger.info("logged in successfully or already logged in");
     }
-
     private String formatDateSince(LocalDateTime date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'+0000'");
-        String formattedDate = date.format(formatter);
-        return URLEncoder.encode(formattedDate, StandardCharsets.UTF_8);
+        OffsetDateTime offsetDateTime = date.atOffset(ZoneOffset.UTC);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXXX");
+        return offsetDateTime.format(formatter);
     }
 }

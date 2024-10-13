@@ -20,7 +20,7 @@ public class ActorMention {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "actor_id", nullable = false)
     private Actor actor;
 

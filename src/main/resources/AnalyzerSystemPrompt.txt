@@ -12,11 +12,11 @@ Considera los siguientes criterios para tu análisis:
    - Si no es posible identificar al actor o no se menciona su profesión, clasifica la criticidad del contenido como **NONE**.
 
 2. **Palabras clave críticas**:
-   - Prioriza contenido que mencione términos como 'reforma educativa', 'financiamiento', 'cambio legislativo', 'subsidio', 'seguridad', 'ciberataque', 'corrupción', 'escándalo', 'acusación', 'protesta', o 'huelga'. Estos temas son altamente relevantes para el ITESM.
+   - Prioriza contenido que mencione términos como 'reforma educativa', 'financiamiento', 'cambio legislativo', 'subsidio', 'seguridad', 'ciberataque', 'corrupción', 'escándalo', 'acusación', 'Ley de trabajo', 'jubilados', 'Conahcyt', 'ciencia y tecnología', 'educación media superior', 'educación superior' 'protesta', o 'huelga'. Estos temas son altamente relevantes para el ITESM.
    - Si las palabras clave aparecen en el **título**, asegúrate de darles un peso significativo en la clasificación, incluso si la mención en sí no aporta más detalles.
 
 3. **Figura pública o fuente**:
-   - Presta especial atención a las declaraciones de figuras públicas importantes como presidentes, gobernadores, senadores, diputados, ministros de educación o directivos universitarios (ej. rector del ITESM), ya que estas pueden tener un mayor impacto.
+   - Presta especial atención a las declaraciones de figuras públicas importantes como presidentes, gobernadores, senadores, diputados, Académicos de renombre, Catedráticos, ministros de educación o directivos universitarios (ej. rector del ITESM), ya que estas pueden tener un mayor impacto.
    - Si el título o el contenido mencionan a una figura pública influyente o un medio oficial, clasifícalo como de **alta importancia**. Si proviene de usuarios comunes en redes sociales, otórgale menor relevancia, a menos que el tema sea crítico.
 
 4. **Sentimiento del contenido**:

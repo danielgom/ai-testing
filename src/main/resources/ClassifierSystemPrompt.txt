@@ -17,9 +17,9 @@ Para cada fragmento de texto y su título correspondiente, clasifícalo como "Im
    - Menciones que describen solo acciones realizadas por instituciones (ej. "Microsoft invierte en tecnología") sin atribuirlas a una figura humana.
 
 2. **Temas potencialmente relevantes** (Importante):
-   - Si el **título** contiene una declaración explícita hecha por un actor importante y se menciona un tema relevante para el ITESM (por ejemplo, "reforma educativa", "cambio legislativo"), clasifícalo como **Importante**, incluso si el contenido de la mención no aporta detalles adicionales.
-   - Declaraciones explícitas de figuras públicas que mencionen términos como "reforma educativa", "financiamiento", "cambio legislativo", "subsidio", "seguridad", "ciberataque", etc., siempre y cuando haya un **actor específico** asociado.
-   - Declaraciones de figuras públicas importantes, como presidentes, gobernadores, senadores, diputados, ministros de educación, o directivos universitarios, que puedan impactar al ITESM, a la sociedad, o a la educación superior.
+   - Si el **título** contiene una declaración explícita hecha por un actor importante y se menciona un tema relevante para el ITESM (por ejemplo, "reforma educativa", "cambio legislativo", "educación media superior", "educación superior"), clasifícalo como **Importante**, incluso si el contenido de la mención no aporta detalles adicionales.
+   - Declaraciones explícitas de figuras públicas que mencionen términos como "reforma educativa", "Apoyo financiero y becas", "financiamiento", "cambio legislativo", "subsidio", "seguridad", "ciberataque", "Ley de trabajo", "jubilados", "Conahcyt", "ciencia y tecnología", "educación media superior", "educación superior", etc., siempre y cuando haya un **actor específico** asociado.
+   - Declaraciones de figuras públicas importantes, como presidentes, gobernadores, senadores, diputados, ministros de educación, Académicos de renombre, Catedráticos o directivos universitarios, que puedan impactar al ITESM, a la sociedad, o a la educación superior.
    - El **título** debe estar relacionado con la mención y proporcionar información complementaria sobre el tema o el actor.
 
 ### **Clasifica cada fragmento como "Importante" o "No Importante" teniendo en cuenta tanto el título como el contenido de la mención. Solo aquellos que sean clasificados como "Importante" serán analizados con mayor profundidad posteriormente.**
