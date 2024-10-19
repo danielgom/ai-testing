@@ -37,7 +37,7 @@ public class ScheduledAlertTrigger {
 
     private static final Logger logger = LoggerFactory.getLogger(ScheduledAlertTrigger.class);
 
-    @Scheduled(cron = "0 */1 * * * *") // Every 10 minutes execution
+    @Scheduled(cron = "0 */10 * * * *") // Every 10 minutes execution
     @Transactional
     public void generateAlerts() {
         logger.info("initializing alert trigger...");

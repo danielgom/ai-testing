@@ -31,8 +31,11 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-mail")
-	implementation("dev.langchain4j:langchain4j-spring-boot-starter:0.34.0")
-	implementation("dev.langchain4j:langchain4j-open-ai-spring-boot-starter:0.34.0")
+	implementation("dev.langchain4j:langchain4j-spring-boot-starter:0.35.0")
+	implementation("dev.langchain4j:langchain4j-open-ai-spring-boot-starter:0.35.0")
+	implementation("dev.langchain4j:langchain4j-vertex-ai-gemini:0.35.0")
+	implementation("dev.langchain4j:langchain4j-google-ai-gemini:0.35.0")
+	implementation("dev.langchain4j:langchain4j-ollama:0.35.0")
 	implementation("org.postgresql:postgresql")
 	implementation("org.mapstruct:mapstruct:1.6.0")
 

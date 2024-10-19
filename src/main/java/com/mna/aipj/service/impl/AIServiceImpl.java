@@ -10,6 +10,8 @@ import com.mna.aipj.dto.MentionInformation;
 import com.mna.aipj.dto.TriggerUpdateResponse;
 import com.mna.aipj.external.brandwatch.BrandWatchMention;
 import com.mna.aipj.external.brandwatch.Brandwatch;
+import com.mna.aipj.external.gemini.GeminiLanguageModel;
+import com.mna.aipj.external.ollama.OllamaLanguageModel;
 import com.mna.aipj.mapper.MentionMapper;
 import com.mna.aipj.model.Query;
 import com.mna.aipj.repository.QueryRepository;
@@ -42,6 +44,10 @@ public class AIServiceImpl implements AIService {
 
     private final SaverService saverService;
 
+    private final GeminiLanguageModel geminiLanguageModel;
+
+    private final OllamaLanguageModel ollamaLanguageModel;
+
     private static final Logger logger = LoggerFactory.getLogger(AIServiceImpl.class);
 
     @Override
@@ -54,10 +60,17 @@ public class AIServiceImpl implements AIService {
             Query query = optionalQuery.get();
             mentions = brandwatch.getQueryMentionsAddedSince(queryID, query.getLastMentionDate())
                     .getResults();
-            saverService.saveUpdateQuery(queryID, lastMentionDateFromMentions(mentions));
+            if (mentions.isEmpty()) {
+                logger.info("No mentions found for queryID {}", queryID);
+                return TriggerUpdateResponse.builder()
+                        .completed(true)
+                        .completedAt(LocalDateTime.now())
+                        .build();
+            }
+            saverService.updateQuery(queryID, lastMentionDateFromMentions(mentions));
         } else {
             mentions = brandwatch.getInitialQueryMentions(queryID).getResults();
-            saverService.saveUpdateQuery(queryID, lastMentionDateFromMentions(mentions));
+            saverService.saveQuery(queryID, lastMentionDateFromMentions(mentions));
         }
 
         if (mentions.isEmpty()) {
@@ -110,10 +123,6 @@ public class AIServiceImpl implements AIService {
         logger.info("saving ({}) important mentions...", analyzedMentions.size());
         saverService.saveAnalisedMentions(analyzedMentions);
 
-        /*
-        TODO: Save into Tables
-             * Think about mention_trends if needed or not (most probably yes)
-         */
         return TriggerUpdateResponse.builder()
                 .gotFromAPI(mentions.size())
                 .totalClassified(classifiedMentions.size())
@@ -133,7 +142,7 @@ public class AIServiceImpl implements AIService {
                 })
                 .collect(Collectors.joining());
 
-        Analyzer analyzer = AiServices.create(Analyzer.class, chatLanguageModel);
+        Analyzer analyzer = AiServices.create(Analyzer.class, geminiLanguageModel.getVertexLanguageModel());
         AnalyzerResponse analyzerResponse = analyzer.analyzeMentions(analizeEntry);
 
         List<AnalyzerResultResponse> analyzerResultList = analyzerResponse.getResponseList();
@@ -165,7 +174,7 @@ public class AIServiceImpl implements AIService {
                 })
                 .collect(Collectors.joining());
 
-        Classifier classifier = AiServices.create(Classifier.class, chatLanguageModel);
+        Classifier classifier = AiServices.create(Classifier.class, geminiLanguageModel.getVertexLanguageModel());
         ClassifierResponse classifierResponse = classifier.classifyMentions(classifyEntry);
 
         List<ClassifierResultResponse> classifierResultList = classifierResponse.getResponseList();

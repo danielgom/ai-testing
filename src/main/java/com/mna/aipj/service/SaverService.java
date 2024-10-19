@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface SaverService {
 
-    void saveUpdateQuery(String queryID, LocalDateTime lastMentionDate);
+    void saveQuery(String queryID, LocalDateTime lastMentionDate);
+
+    void updateQuery(String queryID, LocalDateTime lastMentionDate);
 
     void saveUnimportantMentions(List<MentionInformation> mentions);
 

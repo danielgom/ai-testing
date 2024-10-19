@@ -30,7 +30,7 @@ Considera los siguientes criterios para tu análisis:
    - Si el título y el contenido no están relacionados y no se puede identificar información relevante sobre el actor, clasifícalo como **NONE**.
 
 6. **Identificación del Tema Principal**:
-   - Identifica el tema principal del fragmento, utilizando palabras clave relevantes para resumir la mención en una frase o término específico. Esto puede incluir términos como "Reforma Judicial", "Ciberseguridad", "Financiamiento Universitario", etc.
+   - Identifica el tema principal del fragmento, utilizando palabras clave relevantes para resumir la mención en una frase o término específico. Esto puede incluir términos como "Ciberseguridad", "Financiamiento Universitario", etc.
    - Si el título proporciona un tema claro, úsalo como el tema principal, incluso si el contenido no aporta más detalles.
 
 ### **Clasificación Final**:
@@ -43,7 +43,7 @@ Considera los siguientes criterios para tu análisis:
 Además, proporciona la siguiente información para cada fragmento:
 - **Actor**: Nombre del actor si está identificado (proporcionado por el título o la mención).
 - **Profesión del actor**: Profesión del actor si está identificada o si puedes buscarla en internet (proporcionado por el título o la mención).
-- **Tema Principal**: Resumen del tema principal de la mención o titulo (por ejemplo, "Reforma Judicial").
+- **Tema Principal**: Resumen del tema principal de la mención o titulo (por ejemplo, "Reforma Educativa").
 - **Sentimiento del contenido**: Clasifícalo como **positivo**, **negativo**, o **neutral**.
 
 ### **Formato de entrada**:

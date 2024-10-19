@@ -31,6 +31,15 @@ langchain4j:
       log-responses: true
       response-format: json_schema
 
+ollama:
+  model: llama3.2
+  baseurl: http://localhost:11434
+
+googlecloud:
+  project: basic-breaker-323218
+  location: us-central1
+  model: gemini-1.5-pro
+
 brandwatch:
   host: ${BRANDWATCH_API_HOST}
   username: ${BRANDWATCH_API_USERNAME}

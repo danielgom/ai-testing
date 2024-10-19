@@ -59,7 +59,7 @@ public class Brandwatch {
         String mentionsURL = String.format("/projects/%s/data/mentions",
                 this.projectID);
 
-        int pageSize = 300; // retrieves last x amount of mentions
+        int pageSize = 1000; // retrieves last x amount of mentions
         LocalDate currentDate = LocalDate.now();
 
         try {

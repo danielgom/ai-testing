@@ -28,7 +28,7 @@ Para cada fragmento de texto y su título correspondiente, clasifícalo como "Im
 -- Numero de Mención -- -> -- Titulo -- -> -- Mención --
 
 **Ejemplos**:
--- 0 -- -> -- #Video: Marchan estudiantes contra Reforma Judicial mientras López Obrador rinde último informe -- -> -- ...diversas instituciones, incluyó a la Universidad Nacional Autónoma de México (UNAM), la Facultad de Estudios Superiores Acatlán, la Universidad Iberoamericana, la Universidad Panamericana, La Salle, el Instituto Libre de Derecho y el Tecnológico de Monterrey. El... --
+-- 0 -- -> -- #Video: Marchan estudiantes contra Reforma Energetica mientras López Obrador rinde último informe -- -> -- ...diversas instituciones, incluyó a la Universidad Nacional Autónoma de México (UNAM), la Facultad de Estudios Superiores Acatlán, la Universidad Iberoamericana, la Universidad Panamericana, La Salle, el Instituto Libre de Derecho y el Tecnológico de Monterrey. El... --
 Clasificación: No Importante (No hay un actor específico que haga una declaración, y el título no está directamente relacionado con la mención).
 
 -- 1 -- -> -- Reforma educativa y financiamiento de universidades anunciado por el Presidente -- -> -- El Presidente Andres Manuel Lopez Obrador ha declarado hoy que se destinarán fondos adicionales para la reforma educativa, apoyando a universidades como el ITESM... --
@@ -37,5 +37,5 @@ Clasificación: Importante (El actor es el Presidente Andres Manuel Lopez Obrado
 -- 2 -- -> -- Evoluciona estructura del Tecnológico de Monterrey para impulsar el Aprendizaje para el Futuro -- -> -- @TecdeMonterrey | Instagram: @Tecdemonterrey Acerca del Tecnológico de Monterrey El Tecnológico de Monterrey ( http://www.tec.mx ) es una universidad privada y sin fines de lucro, reconocida por su excelencia académica, innovación educativa y visión global... --
 Clasificación: No Importante (No hay un actor específico que haga una declaración, una institución no es un actor).
 
--- 3 -- -> -- Claudia Sheinbaum reitera que la reforma al Poder Judicial es inamovible -- -> -- ...todo y mango! Sacan la piñata de Mariana Echeverría de La Casa de los Famosos Sailor Moon me hizo gay , la tesis del Tec de Monterrey que genera debate en redes Espectáculo Christian Nodal es hospitalizado de emergencia y pospone concierto en Pachuca Deportes... --
+-- 3 -- -> -- Claudia Sheinbaum reitera que la reforma al Poder legislativo es inamovible -- -> -- ...todo y mango! Sacan la piñata de Mariana Echeverría de La Casa de los Famosos Sailor Moon me hizo gay , la tesis del Tec de Monterrey que genera debate en redes Espectáculo Christian Nodal es hospitalizado de emergencia y pospone concierto en Pachuca Deportes... --
 Clasificación: Importante (El título contiene una declaración relevante hecha por Claudia Sheinbaum, un actor importante, a pesar de que el contenido no es coherente).

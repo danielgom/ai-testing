@@ -1,9 +1,9 @@
 CREATE TABLE actors
 (
     id         INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    name       VARCHAR(255) NOT NULL,                          -- Nombre del actor
-    occupation VARCHAR(255),                                   -- Ocupación del actor
-    created_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP -- Fecha y hora de creación del actor
+    name       VARCHAR(255),                                -- Nombre del actor
+    occupation VARCHAR(255),                                -- Ocupación del actor
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP -- Fecha y hora de creación del actor
 );
 
 CREATE INDEX idx_actors_name ON actors (name);

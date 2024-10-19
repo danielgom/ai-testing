@@ -29,7 +29,15 @@ public class SaverServiceImpl implements SaverService {
     private final ActorMentionRepository actorMentionRepository;
 
     @Override
-    public void saveUpdateQuery(String queryID, LocalDateTime lastMentionDate) {
+    public void saveQuery(String queryID, LocalDateTime lastMentiondate) {
+        queryRepository.save(Query.builder()
+                .queryID(queryID)
+                .lastMentionDate(lastMentiondate)
+                .build());
+    }
+
+    @Override
+    public void updateQuery(String queryID, LocalDateTime lastMentionDate) {
         queryRepository.updateLastMentionDate(queryID, lastMentionDate);
     }
 
