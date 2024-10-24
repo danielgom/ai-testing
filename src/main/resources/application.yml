@@ -22,6 +22,7 @@ spring:
       ddl-auto: validate
     show-sql: false
     open-in-view: false
+
 langchain4j:
   open-ai:
     chat-model:

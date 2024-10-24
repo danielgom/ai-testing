@@ -12,7 +12,7 @@ Considera los siguientes criterios para tu análisis:
    - Si no es posible identificar al actor o no se menciona su profesión, clasifica la criticidad del contenido como **NONE**.
 
 2. **Palabras clave críticas**:
-   - Prioriza contenido que mencione términos como 'reforma educativa', 'financiamiento', 'cambio legislativo', 'subsidio', 'seguridad', 'ciberataque', 'corrupción', 'escándalo', 'acusación', 'Ley de trabajo', 'jubilados', 'Conahcyt', 'ciencia y tecnología', 'educación media superior', 'educación superior' 'protesta', o 'huelga'. Estos temas son altamente relevantes para el ITESM.
+   - Prioriza contenido que mencione términos como 'Reforma Educativa', 'Financiamiento Educativo', 'Apoyo financiero y becas', 'Cambio legislativo en materia educativa', 'Subsidio Educativo', 'Seguridad', 'Huelga', 'Tramites Educativos', 'Planes de estudio', 'Nueva Escuela Mexicana', 'escándalo', 'acusación', 'Ley de trabajo', 'jubilados', 'Conahcyt', 'ciencia y tecnología', 'educación media superior', 'educación superior' 'protesta', o 'huelga'. Estos temas son altamente relevantes para el ITESM.
    - Si las palabras clave aparecen en el **título**, asegúrate de darles un peso significativo en la clasificación, incluso si la mención en sí no aporta más detalles.
 
 3. **Figura pública o fuente**:

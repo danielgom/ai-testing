@@ -99,7 +99,6 @@ public class AIServiceImpl implements AIService {
                 .getOrDefault(false, List.of());
 
         if (!unimportantMentionList.isEmpty()) {
-            logger.info("saving ({}) unimportant mentions...", unimportantMentionList.size());
             saverService.saveUnimportantMentions(unimportantMentionList);
         } else {
             logger.info("there are no unimportant mentions to save");
@@ -119,9 +118,9 @@ public class AIServiceImpl implements AIService {
 
         // Mention analysis
         List<MentionInformation> analyzedMentions = this.analyzeMentions(importantMentionList);
-
-        logger.info("saving ({}) important mentions...", analyzedMentions.size());
         saverService.saveAnalisedMentions(analyzedMentions);
+
+        logger.info("saved ({}) important mentions...", analyzedMentions.size());
 
         return TriggerUpdateResponse.builder()
                 .gotFromAPI(mentions.size())
@@ -142,7 +141,7 @@ public class AIServiceImpl implements AIService {
                 })
                 .collect(Collectors.joining());
 
-        Analyzer analyzer = AiServices.create(Analyzer.class, geminiLanguageModel.getVertexLanguageModel());
+        Analyzer analyzer = AiServices.create(Analyzer.class, chatLanguageModel);
         AnalyzerResponse analyzerResponse = analyzer.analyzeMentions(analizeEntry);
 
         List<AnalyzerResultResponse> analyzerResultList = analyzerResponse.getResponseList();
@@ -174,7 +173,7 @@ public class AIServiceImpl implements AIService {
                 })
                 .collect(Collectors.joining());
 
-        Classifier classifier = AiServices.create(Classifier.class, geminiLanguageModel.getVertexLanguageModel());
+        Classifier classifier = AiServices.create(Classifier.class, chatLanguageModel);
         ClassifierResponse classifierResponse = classifier.classifyMentions(classifyEntry);
 
         List<ClassifierResultResponse> classifierResultList = classifierResponse.getResponseList();

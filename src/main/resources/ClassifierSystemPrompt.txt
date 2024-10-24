@@ -18,7 +18,7 @@ Para cada fragmento de texto y su título correspondiente, clasifícalo como "Im
 
 2. **Temas potencialmente relevantes** (Importante):
    - Si el **título** contiene una declaración explícita hecha por un actor importante y se menciona un tema relevante para el ITESM (por ejemplo, "reforma educativa", "cambio legislativo", "educación media superior", "educación superior"), clasifícalo como **Importante**, incluso si el contenido de la mención no aporta detalles adicionales.
-   - Declaraciones explícitas de figuras públicas que mencionen términos como "reforma educativa", "Apoyo financiero y becas", "financiamiento", "cambio legislativo", "subsidio", "seguridad", "ciberataque", "Ley de trabajo", "jubilados", "Conahcyt", "ciencia y tecnología", "educación media superior", "educación superior", etc., siempre y cuando haya un **actor específico** asociado.
+   - Declaraciones explícitas de figuras públicas que mencionen términos como "Reforma Educativa", "Tramites Academicos", "Apoyo financiero y becas", "Financiamiento Educativo", "Cambio legislativo en materia educativa", "subsidio educativo", "seguridad", "ciberataque", "Ley de trabajo", "jubilados", "Conahcyt", "Ciencia, tegnolocia y Educacion", "educación media superior", "educación superior", "Sistema Educativo", etc., siempre y cuando haya un **actor específico** asociado.
    - Declaraciones de figuras públicas importantes, como presidentes, gobernadores, senadores, diputados, ministros de educación, Académicos de renombre, Catedráticos o directivos universitarios, que puedan impactar al ITESM, a la sociedad, o a la educación superior.
    - El **título** debe estar relacionado con la mención y proporcionar información complementaria sobre el tema o el actor.
 
