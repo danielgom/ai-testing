@@ -14,7 +14,7 @@ spring:
   application:
     name: aipj
   datasource:
-    url: jdbc:postgresql://localhost:5432/ai_tracker
+    url: jdbc:postgresql://localhost:5432/ai_tracker_new
     username: ${POSTGRESQL_USERNAME}
     password: ${POSTGRESQL_PASSWORD}
   jpa:

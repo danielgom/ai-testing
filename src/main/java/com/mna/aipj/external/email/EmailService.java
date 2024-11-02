@@ -56,13 +56,15 @@ public class EmailService {
                             <p><strong>Tema:</strong> %s</p>
                             <p><strong>Título:</strong> %s</p>
                             <p><strong>Contenido:</strong> %s</p>
+                            <p><a href="%s">Visit URL</a></p>
                         </div>
                     """.formatted(alarmInfo.getActor(),
                     alarmInfo.getAlertLevel(),
                     alarmInfo.getAlertLevel(),
                     alarmInfo.getTopic(),
                     alarmInfo.getTitle(),
-                    alarmInfo.getContent()));
+                    alarmInfo.getContent(),
+                    alarmInfo.getUrl()));
         }
 
         return """

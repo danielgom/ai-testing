@@ -1,6 +1,7 @@
 package com.mna.aipj.dto;
 
-import com.mna.aipj.model.AlertLevel;
+import com.mna.aipj.model.ActorImportance;
+import com.mna.aipj.model.TopicImportance;
 import com.mna.aipj.model.Sentiment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,7 +41,10 @@ public class MentionInformation {
     private String topic;
 
     // Returned after analysis
-    private AlertLevel alertLevel;
+    private TopicImportance topicImportance;
+
+    // Returned after analysis
+    private ActorImportance actorImportance;
 
     // Returned after classification
     private boolean isImportant;

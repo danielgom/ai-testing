@@ -5,7 +5,6 @@ import com.mna.aipj.external.email.EmailMessageInfo;
 import com.mna.aipj.external.email.EmailService;
 import com.mna.aipj.model.ActorMention;
 import com.mna.aipj.model.Alert;
-import com.mna.aipj.model.AlertLevel;
 import com.mna.aipj.model.Query;
 import com.mna.aipj.repository.ActorMentionRepository;
 import com.mna.aipj.repository.AlertRepository;
@@ -35,14 +34,15 @@ public class ScheduledAlertTrigger {
 
     private final ActorMentionRepository actorMentionRepository;
 
+    private static final int DEFAULT_UNIMPORTANT_ALERT_WEIGHT = 0;
     private static final Logger logger = LoggerFactory.getLogger(ScheduledAlertTrigger.class);
 
-    @Scheduled(cron = "0 */10 * * * *") // Every 10 minutes execution
+    @Scheduled(cron = "0 0/5 * * * ?", zone = "America/Mexico_City") // Every 5 minutes execution
     @Transactional
     public void generateAlerts() {
         logger.info("initializing alert trigger...");
         List<Alert> unTriggeredAlerts =
-                alertRepository.findByActiveFalseAndTriggerDateNullAndDeactivatedAtNullAndAlertLevelNot(AlertLevel.NONE.name());
+                alertRepository.findByActiveFalseAndTriggerDateNullAndDeactivatedAtNullAndWeighingNot(DEFAULT_UNIMPORTANT_ALERT_WEIGHT);
 
         if (unTriggeredAlerts.isEmpty()) {
             logger.info("No alerts to trigger");
@@ -65,10 +65,11 @@ public class ScheduledAlertTrigger {
                     ActorMention actorMention = alert.getActorMention();
                     return AlarmInfo.builder()
                             .actor(actorMention.getActor().getName())
-                            .alertLevel(alert.getAlertLevel().name())
-                            .topic(alert.getTopic())
-                            .title(alert.getActorMention().getTitle())
-                            .content(alert.getActorMention().getContent())
+                            .alertLevel(getAlertLevel(alert))
+                            .url(actorMention.getUrlSource())
+                            .topic(actorMention.getTopic())
+                            .title(actorMention.getTitle())
+                            .content(actorMention.getContent())
                             .build();
                 })
                 .toList();
@@ -85,5 +86,17 @@ public class ScheduledAlertTrigger {
 
         emailService.sendSimpleEmail(emailMessageInfo);
         logger.info("successfully sent last triggered alerts at {}", lastUpdateDate);
+    }
+
+    private String getAlertLevel(Alert alert) {
+        int weighing = alert.getWeighing();
+        // These can be dynamically set later
+        if (weighing <= 24) {
+            return "LOW";
+        }
+        if (weighing <= 74) {
+            return "MEDIUM";
+        }
+        return "HIGH";
     }
 }

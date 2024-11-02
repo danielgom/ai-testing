@@ -32,4 +32,8 @@ public class BrandWatchMention {
     @JsonProperty("date")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
     private LocalDateTime mentionDate;
+
+    @JsonProperty("added")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
+    private LocalDateTime addedMentionDate;
 }

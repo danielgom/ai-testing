@@ -53,7 +53,8 @@ Además, proporciona la siguiente información para cada fragmento:
 -- 0 -- -> -- La presidenta Claudia Sheinbaum anuncia financiamiento adicional para la reforma educativa -- -> -- ...La presidenta Claudia Sheinbaum ha anunciado hoy que se destinarán fondos adicionales a la reforma educativa, apoyando a universidades como el ITESM... --
 
 Resultado esperado:
-Clasificación: Alta Importancia
+Importancia del Tema: Alto
+Importancia del actor: Alto
 Sentimiento: Positivo
 Actor: Claudia Sheimbaum
 Profesión del actor: Presidenta De México

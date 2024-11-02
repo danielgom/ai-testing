@@ -13,6 +13,8 @@ public class AlarmInfo {
 
     private String alertLevel;
 
+    private String url;
+
     private String topic;
 
     private String title;

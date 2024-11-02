@@ -7,7 +7,6 @@ import com.mna.aipj.aidto.ClassifierResultResponse;
 import com.mna.aipj.aimodel.Analyzer;
 import com.mna.aipj.aimodel.Classifier;
 import com.mna.aipj.dto.MentionInformation;
-import com.mna.aipj.dto.TriggerUpdateResponse;
 import com.mna.aipj.external.brandwatch.BrandWatchMention;
 import com.mna.aipj.external.brandwatch.Brandwatch;
 import com.mna.aipj.external.gemini.GeminiLanguageModel;
@@ -52,7 +51,7 @@ public class AIServiceImpl implements AIService {
 
     @Override
     @Transactional
-    public TriggerUpdateResponse triggerUpdate(String queryID) {
+    public void pullClassifyAndAnaliseMentions(String queryID) {
         List<BrandWatchMention> mentions;
 
         Optional<Query> optionalQuery = queryRepository.findByQueryID(queryID);
@@ -62,10 +61,7 @@ public class AIServiceImpl implements AIService {
                     .getResults();
             if (mentions.isEmpty()) {
                 logger.info("No mentions found for queryID {}", queryID);
-                return TriggerUpdateResponse.builder()
-                        .completed(true)
-                        .completedAt(LocalDateTime.now())
-                        .build();
+                return;
             }
             saverService.updateQuery(queryID, lastMentionDateFromMentions(mentions));
         } else {
@@ -75,13 +71,10 @@ public class AIServiceImpl implements AIService {
 
         if (mentions.isEmpty()) {
             logger.info("no mentions retrieved from Brandwatch API");
-            return TriggerUpdateResponse.builder()
-                    .completed(true)
-                    .completedAt(LocalDateTime.now())
-                    .build();
+            return;
         }
 
-        // To mention metadataInfo
+        // To mention metadataInfo, removes X mentions for now
         List<MentionInformation> mentionInformationList = this.toMentionInformationList(mentions);
 
         // Mention classification important/non-important
@@ -106,12 +99,7 @@ public class AIServiceImpl implements AIService {
 
         if (importantMentionList.isEmpty()) {
             logger.info("there are no mentions to analise");
-            return TriggerUpdateResponse.builder()
-                    .gotFromAPI(mentions.size())
-                    .totalClassified(classifiedMentions.size())
-                    .completed(true)
-                    .completedAt(LocalDateTime.now())
-                    .build();
+            return;
         }
 
         logger.info("analysing ({}) mentions...", importantMentionList.size());
@@ -121,14 +109,6 @@ public class AIServiceImpl implements AIService {
         saverService.saveAnalisedMentions(analyzedMentions);
 
         logger.info("saved ({}) important mentions...", analyzedMentions.size());
-
-        return TriggerUpdateResponse.builder()
-                .gotFromAPI(mentions.size())
-                .totalClassified(classifiedMentions.size())
-                .totalAnalysed(analyzedMentions.size())
-                .completed(true)
-                .completedAt(LocalDateTime.now())
-                .build();
     }
 
     private List<MentionInformation> analyzeMentions(List<MentionInformation> mentions) {
@@ -154,7 +134,8 @@ public class AIServiceImpl implements AIService {
                     mention.setAnalyzed(true);
                     mention.setSentiment(mentionAnalysis.getSentiment());
                     mention.setTopic(mentionAnalysis.getTopic());
-                    mention.setAlertLevel(mentionAnalysis.getAlertLevel());
+                    mention.setTopicImportance(mentionAnalysis.getTopicImportance());
+                    mention.setActorImportance(mentionAnalysis.getActorImportance());
                     mention.setActor(mentionAnalysis.getActor());
                     mention.setActorProfession(mentionAnalysis.getProfession());
                 });
@@ -199,6 +180,6 @@ public class AIServiceImpl implements AIService {
     }
 
     private LocalDateTime lastMentionDateFromMentions(List<BrandWatchMention> mentions) {
-        return mentions.getFirst().getMentionDate();
+        return mentions.getFirst().getAddedMentionDate();
     }
 }

@@ -25,8 +25,13 @@ public class SaverServiceImpl implements SaverService {
 
     private final AlertRepository alertRepository;
 
-    private static final Logger logger = LoggerFactory.getLogger(SaverServiceImpl.class);
+    private final MediaRankingRepository mediaRankingRepository;
+
     private final ActorMentionRepository actorMentionRepository;
+
+    private static final Logger logger = LoggerFactory.getLogger(SaverServiceImpl.class);
+
+    private static final double DEFAULT_SCORE_OF_MISSING_SOURCE = 0.75;
 
     @Override
     public void saveQuery(String queryID, LocalDateTime lastMentiondate) {
@@ -89,11 +94,44 @@ public class SaverServiceImpl implements SaverService {
                     .createdAt(currentTime)
                     .build());
 
+            ActorImportance actorImportance = mentionInformation.getActorImportance();
+            TopicImportance topicImportance = mentionInformation.getTopicImportance();
+            double sourceImportance = getSourceImportance(mentionInformation.getSource());
+
             alertRepository.save(Alert.builder()
                     .actorMention(actorMention)
-                    .topic(mentionInformation.getTopic())
-                    .alertLevel(mentionInformation.getAlertLevel())
+                    .actorImportance(actorImportance)
+                    .topicImportance(topicImportance)
+                    .sourceImportance(sourceImportance)
+                    .weighing(calculateWeighing(actorImportance,
+                            topicImportance, sourceImportance))
                     .build());
         });
     }
+
+    private double getSourceImportance(String urlSource) {
+        final Optional<MediaRanking> domainOptional = mediaRankingRepository.findByDomain(urlSource);
+        return domainOptional.map(MediaRanking::getScore).orElse(DEFAULT_SCORE_OF_MISSING_SOURCE);
+    }
+
+    private int calculateWeighing(ActorImportance actorImportance,
+                                  TopicImportance topicImportance,
+                                  double sourceImportance) {
+        final int actorScore = switch (actorImportance) {
+            case LOW -> 50;
+            case MEDIUM -> 80;
+            case HIGH -> 100;
+            default -> 0;
+        };
+
+        final int topicScore = switch (topicImportance) {
+            case LOW -> 25;
+            case MEDIUM -> 75;
+            case HIGH -> 100;
+            default -> 0;
+        };
+
+        return (int) ((actorScore * topicScore * sourceImportance) / 100);
+    }
+
 }

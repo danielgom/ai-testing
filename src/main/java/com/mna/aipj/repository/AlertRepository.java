@@ -17,9 +17,9 @@ public interface AlertRepository extends JpaRepository<Alert, Integer> {
             WHERE a.active = false 
               AND a.trigger_date IS NULL 
               AND a.deactivated_at IS NULL 
-              AND a.alert_level <> CAST(:alertLevel AS alert_level_enum)
+              AND a.weighing <> :weighing 
             """)
-    List<Alert> findByActiveFalseAndTriggerDateNullAndDeactivatedAtNullAndAlertLevelNot(String alertLevel);
+    List<Alert> findByActiveFalseAndTriggerDateNullAndDeactivatedAtNullAndWeighingNot(int weighing);
 
     @Modifying
     @Query(nativeQuery = true, value = """

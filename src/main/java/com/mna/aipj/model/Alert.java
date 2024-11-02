@@ -25,15 +25,22 @@ public class Alert {
     @JoinColumn(name = "actor_mention_id", nullable = false)
     private ActorMention actorMention;
 
-    @Column(nullable = false)
-    private String topic;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "actor_importance", nullable = false, columnDefinition = "importance_level_enum")
+    @ColumnTransformer(write = "?::importance_level_enum")
+    private ActorImportance actorImportance;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "alert_level", nullable = false, columnDefinition = "alert_level_enum")
-    @ColumnTransformer(write = "?::alert_level_enum")
-    private AlertLevel alertLevel;
+    @Column(name = "topic_importance", nullable = false, columnDefinition = "importance_level_enum")
+    @ColumnTransformer(write = "?::importance_level_enum")
+    private TopicImportance topicImportance;
 
-    @Column(nullable = true)
+    @Column(name = "source_importance", nullable = false)
+    private Double sourceImportance;
+
+    @Column(name = "weighing", nullable = false)
+    private int weighing;
+
     private boolean active;
 
     @Column(name = "trigger_date", nullable = false)
@@ -47,16 +54,17 @@ public class Alert {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Alert alert = (Alert) o;
-        return id == alert.id && active == alert.active &&
+        return id == alert.id && weighing == alert.weighing && active == alert.active &&
                 Objects.equals(actorMention, alert.actorMention) &&
-                Objects.equals(topic, alert.topic) && alertLevel == alert.alertLevel &&
-                Objects.equals(triggerDate, alert.triggerDate) &&
-                Objects.equals(deactivatedAt, alert.deactivatedAt);
+                actorImportance == alert.actorImportance &&
+                topicImportance == alert.topicImportance &&
+                Objects.equals(sourceImportance, alert.sourceImportance) &&
+                Objects.equals(triggerDate, alert.triggerDate) && Objects.equals(deactivatedAt, alert.deactivatedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, actorMention, topic, alertLevel,
-                active, triggerDate, deactivatedAt);
+        return Objects.hash(id, actorMention, actorImportance, topicImportance, sourceImportance,
+                weighing, active, triggerDate, deactivatedAt);
     }
 }
